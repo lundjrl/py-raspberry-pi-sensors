@@ -4,8 +4,8 @@ from sense_hat import SenseHat
 
 
 sense = SenseHat()
-temp = sense.get_temperature()
 
+sense.low_light = True
 sense.set_rotation(180)
 
 
@@ -14,16 +14,16 @@ def exit_handler():
     sense.clear()
 
 
-def convertCelsiusToFahrenheit():
-    print(round(temp, 1))
-    return round(temp * 1.8 + 32, 1)
+def convertCelsiusToFahrenheit(val):
+    return round(val * 1.8 + 32, 1)
 
 
 def main():
     print("starting temp reader...")
     
     while True:
-        sense.show_message(str(convertCelsiusToFahrenheit()))
+        reading = sense.get_temperature()
+        sense.show_message(str(convertCelsiusToFahrenheit(reading)))
 
 
 atexit.register(exit_handler)

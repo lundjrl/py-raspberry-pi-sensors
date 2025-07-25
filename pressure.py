@@ -15,12 +15,11 @@ def exit_handler():
 
 
 def main():
-    print("starting humidity reader...")
+    print("starting temp reader...")
     
     while True:
-        reading = sense.get_humidity()
-        reading = round(reading, 1)
-        sense.show_message(str(reading))
+        reading = sense.get_pressure()
+        sense.show_message(str(round(reading, 2)))
 
 
 atexit.register(exit_handler)
